@@ -14,17 +14,8 @@ class productsController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $product = product::all();
+        return $product;
     }
 
     /**
@@ -35,7 +26,11 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new product();
+        $product->category_id=$request->categoty_id;
+        $product->name=$request->name;
+        $product->price=$request->price;
+        $product->save();
     }
 
     /**
@@ -46,18 +41,8 @@ class productsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $product = product::find($id);
+        return $product;
     }
 
     /**
@@ -69,7 +54,11 @@ class productsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = product::find($id);
+        $product->category_id=$request->categoty_id;
+        $product->name=$request->name;
+        $product->price=$request->price;
+        $product->save();
     }
 
     /**
@@ -80,6 +69,7 @@ class productsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = product::find($id);
+        $product->delete();
     }
 }

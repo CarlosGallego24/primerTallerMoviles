@@ -53,7 +53,9 @@ class categoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = category::find($id);
+        $category->name=$request->name;
+        $category->save();
     }
 
     /**
@@ -64,6 +66,7 @@ class categoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = category::find($id);
+        $category->delete();
     }
 }
